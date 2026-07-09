@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="Pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Estacionamento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!--Tudo QUE PRECISAMOS
+    Titulo Ok!
+    botão de calcular Ok!
+    verificar vagas 
+    cadastrar carros
+    numero de contato do dono
+    tempo limite atingido
+    tempo limte padrão
+    Avisar quando for um valor abaixo do valor minimo
+    Avisar o troco
+    
+    -->
+    <!---Titulo superior com 3 barrinhas de navegação-->
+    <header>
+        <h1>Calculadora de Estacionamento</h1>
+        <nav class="menu" aria-label="Menu principal">
+            <button class="menu-button" type="button" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-content">
+                <a href="#">Configurar admin</a>
+                <a href="#">Verificar Vagas</a>
+                <a href="#">Contato do Dono</a>
+            </div>
+        </nav>
+    </header>
+    <!-- Vagas -->
+    <div class="vagas">
+        <h2 id="vagasCounter"></h2>
+    </div>
+    <main>
+    <section class="vehiclesList" id="vehiclesList"></section>
+    
+    <!-- Quadrado de adição de veiculo-->
+    <button type="button" class="addVehicle" id="OpenCardAdd" aria-label="Adicionar Veiculo">
+        <h1>+</h1>
+    </button>
+        <dialog class="vehicleDialog" id="addVehicleDialog">
+            <form id="vehicleForm">
+
+                <div class="formGrup">
+                    <label for="TypeVehicle">Tipo do Veiculo</label>
+                    <select id="TypeVehicle" name="TypeVehicle" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="Moto">Moto</option>
+                        <option value="Carro">Carro</option>
+                    </select>
+                </div>
+
+                <div class="formGrup">
+                    <label for="vehicleModel">Modelo do Veiculo:</label>
+                    <input type="text" id="Model" name="vehicleModel" required>
+                </div>
+
+                <div class="formGrup">
+                    <label for="vehicleColor">Cor do Veiculo:</label>
+                    <input type="text" id="Color" name="vehicleColor" required>
+                </div>
+
+                <div class="formGrup">
+                    <label for="vehicleYear">Ano do Veiculo:</label>
+                    <input type="number" id="Year" name="vehicleYear" min="1886" max="2040" required>
+                </div>
+
+                <div class="formGrup"> 
+                    <label for="vehicleBrand">Marca do Veiculo:</label>
+                    <input type="text" id="Brand" name="vehicleBrand" required>
+                </div>
+                
+                <div class="formGrup">    
+                    <label for="vehicleOwner">Dono do Veiculo:</label>
+                    <input type="text" id="Owner" name="vehicleOwner" required>
+                </div>
+
+                <div class="formGrup">
+                    <label for="vehicleContact">Contato do Dono:</label>
+                    <input type="tel" id="Contact" name="vehicleContact" required>
+                </div>
+
+                <div class="formGrup">
+                    <label for="vehiclePlate">Placa do Veiculo:</label>
+                    <input type="text" id="Plate" name="vehiclePlate" required>
+                </div>
+
+                <div class="formGrup">
+                    <label for="vehicleObservation">Observações:</label>
+                    <input type="text" id="vehicleObservation" name="vehicleObservation">
+                </div>
+
+                <div class="formGrup">
+                    <label for="parkingTime">Tempo de Estacionamento</label>
+                    <select id="parkingTime" name="parkingTime" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="30">30 minutos</option>
+                        <option value="60">60 minutos</option>
+                        <option value="120">120 minutos</option>
+                    </select>
+                </div>
+
+                <div class="formButton">
+                    <button class="Notadd" type="button" id="closeDialog">Cancelar</button>
+                    <button class="acceptAdd" type="submit" id="addVehicle">Adicionar</button>
+                </div>
+            </form>
+        </dialog>
+    </main>
+
+    <div class="payment-overlay" id="paymentOverlay" hidden aria-hidden="true">
+        <div class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
+            <h2 id="paymentTitle">Forma de pagamento</h2>
+            <form id="paymentForm">
+                <div class="formGrup">
+                    <label for="paymentMethod">Método</label>
+                    <select id="paymentMethod" name="paymentMethod">
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão">Cartão</option>
+                        <option value="Pix">Pix</option>
+                    </select>
+                </div>
+
+                <div class="formGrup" id="paymentAmountWrapper">
+                    <label for="paymentAmount">Valor pago</label>
+                    <input type="number" id="paymentAmount" name="paymentAmount" min="0" step="0.01">
+                </div>
+
+                <p id="paymentSummary" class="payment-summary">Selecione o método de pagamento.</p>
+
+                <div class="formButton">
+                    <button class="Notadd" type="button" id="closePayment">Cancelar</button>
+                    <button class="acceptAdd" type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
