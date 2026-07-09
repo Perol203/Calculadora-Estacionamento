@@ -191,10 +191,19 @@ class ParkingApp {
     handlePayment(event) {
         event.preventDefault();
         if (!this.activeVehicle) return;
-
-        alert(`Pagamento concluído para ${this.activeVehicle.modelo}`);
-        this.removeVehicle(this.activeVehicle);
-        this.closePaymentModal();
+ 
+        const method = this.paymentMethod.value;
+        const valorPago = Number(this.paymentAmount.value || 0);
+        const valorEstacionamento = this.activeVehicle.getPrice();
+ 
+        if (method === "Dinheiro" && valorPago < valorEstacionamento) {
+            alert("Valor insuficiente para concluir o pagamento.");
+            return; // Impede a continuação da função
+        }
+ 
+        alert(`Pagamento de R$ ${valorEstacionamento.toFixed(2)} concluído para ${this.activeVehicle.modelo}`);
+        this.removeVehicle(this.activeVehicle); // Remove o veículo da lista
+        this.closePaymentModal(); // Fecha a janela de pagamento
     }
 
     handleSubmit(event) {
